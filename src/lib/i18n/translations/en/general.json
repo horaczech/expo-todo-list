@@ -1,0 +1,10 @@
+{
+  "new_task": "New Task",
+  "edit_task": "Edit Task",
+  "empty": "No tasks here",
+  "add_new": "Submit",
+  "created": "Created",
+  "status": "Status",
+  "done": "Task Completed",
+  "active": "Task Active"
+}
