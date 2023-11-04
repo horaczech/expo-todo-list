@@ -27,7 +27,16 @@
       "@/theme/*": ["./src/theme/*"],
       "@/appTypes/*": ["./src/types/*"],
       "@/styles/*": ["./src/styles/*"]
-    }
+    },
+    "types": ["jest"]
   },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
   "include": ["./src/**/*.tsx", "./src/**/*.ts"]
 }
