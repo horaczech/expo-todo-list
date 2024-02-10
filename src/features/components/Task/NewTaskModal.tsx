@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef} from 'react';
+import React, {useContext, useEffect, useMemo, useRef} from 'react';
 import {TaskPreview} from '@/appTypes/task';
 import {
   BottomSheetModal,
@@ -9,6 +9,8 @@ import {Alert, StyleSheet, Switch, View} from 'react-native';
 import {Box, Pressable, Text} from '@/components/UI';
 import {useTranslation} from 'react-i18next';
 import {useFormik} from 'formik';
+import {SettingsContext} from '@/context/SettingsContext';
+import {darkTheme, theme} from '@/theme/theme';
 
 interface Props {
   initialData: TaskPreview | null;
@@ -26,6 +28,7 @@ export default function NewTaskModal({
   const {t} = useTranslation('general');
   const modalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => [350], []);
+  const {isDarkMode} = useContext(SettingsContext);
 
   useEffect(() => {
     if (isOpen) {
@@ -64,6 +67,11 @@ export default function NewTaskModal({
   return (
     <View style={styles.sheetContainer}>
       <BottomSheetModal
+        backgroundStyle={{
+          backgroundColor: isDarkMode
+            ? darkTheme.colors.taskBg
+            : theme.colors.white,
+        }}
         backdropComponent={renderBackdrop}
         snapPoints={snapPoints}
         enablePanDownToClose
@@ -74,7 +82,7 @@ export default function NewTaskModal({
             {initialData ? t('edit_task') : t('new_task')}
           </Text>
           <BottomSheetTextInput
-            style={styles.input}
+            style={[styles.input, {color: isDarkMode ? 'white' : 'black'}]}
             value={formikProps.values.text}
             onChangeText={text => formikProps.setFieldValue('text', text)}
           />
