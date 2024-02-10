@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import TaskListItem from './TaskListItem';
 import {TaskPreview} from '@/appTypes/task';
 import {Pressable} from '@/components/UI';
@@ -8,6 +8,8 @@ import Icon from '@expo/vector-icons/Feather';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import * as Haptics from 'expo-haptics';
 import {ImpactFeedbackStyle} from 'expo-haptics/src/Haptics.types';
+import {SettingsContext} from '@/context/SettingsContext';
+import {darkTheme, theme} from '@/theme/theme';
 
 interface Props {
   data: TaskPreview[];
@@ -26,6 +28,8 @@ export default function TaskList({
   onOrderChange,
   itemRefs,
 }: Props) {
+  const {isDarkMode} = useContext(SettingsContext);
+
   return (
     <View style={globalStyles.f1}>
       <Pressable
@@ -41,7 +45,11 @@ export default function TaskList({
         justifyContent="center"
         borderColor="primary"
         borderWidth={2}>
-        <Icon name="plus" size={24} />
+        <Icon
+          name="plus"
+          size={24}
+          color={(isDarkMode ? darkTheme : theme).textVariants.defaults.color}
+        />
       </Pressable>
       <DraggableFlatList
         containerStyle={globalStyles.f1}

@@ -30,7 +30,9 @@ export default function Header({
     <Box
       p="2"
       bg="primary"
-      style={{paddingTop: insets.top + 10}}
+      style={{
+        paddingTop: insets.top + 10,
+      }}
       overflow="hidden">
       {onBackPress || type !== 'main' ? (
         <Pressable

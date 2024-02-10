@@ -5,6 +5,7 @@ export const theme = createTheme({
     primary: '#246375',
     black: '#000000',
     white: 'white',
+    taskBg: '#f5f5f5',
     fakeWhite: '#e6e6e6',
     disabled: '#e6e6e6',
   },
@@ -52,3 +53,19 @@ export const theme = createTheme({
 });
 
 export type Theme = typeof theme;
+
+export const darkTheme: Theme = {
+  ...theme,
+  colors: {
+    ...theme.colors,
+    primary: '#102a33',
+    taskBg: '#183f4b',
+  },
+  textVariants: {
+    ...theme.textVariants,
+    defaults: {
+      ...theme.textVariants.defaults,
+      color: 'white',
+    },
+  },
+};

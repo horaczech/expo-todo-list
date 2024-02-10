@@ -3,7 +3,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": ["dom", "esnext"],
+    "lib": ["es5", "es6", "dom", "esnext", "dom.iterable"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
@@ -19,6 +19,7 @@
       "@/assets/*": ["./src/assets/*"],
       "@/common/*": ["./src/common/*"],
       "@/components/*": ["./src/components/*"],
+      "@/context/*": ["./src/context/*"],
       "@/features/*": ["./src/features/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/navigation/*": ["./src/navigation/*"],

@@ -6,5 +6,6 @@
   "created": "Created",
   "status": "Status",
   "done": "Task Completed",
-  "active": "Task Active"
+  "active": "Task Active",
+  "appearance": "Appearance"
 }

@@ -1,8 +1,8 @@
-import React, {memo} from 'react';
+import React, {memo, useContext} from 'react';
 import {TaskPreview} from '@/appTypes/task';
 import {Box, Pressable, Text} from '@/components/UI';
 import {BoxProps} from '@shopify/restyle';
-import {Theme} from '@/theme/theme';
+import {darkTheme, theme, Theme} from '@/theme/theme';
 import {
   PixelRatio,
   StyleSheet,
@@ -22,6 +22,7 @@ import SwipeableItem, {
   SwipeableItemImperativeRef,
 } from 'react-native-swipeable-item';
 import UnderlayLeft from '@/features/components/Task/UnderlayLeft';
+import {SettingsContext} from '@/context/SettingsContext';
 
 interface Props
   extends Omit<RenderItemParams<TaskPreview>, 'item'>,
@@ -45,6 +46,7 @@ function TaskListItem({
   onDelete,
   ...otherProps
 }: Props) {
+  const {isDarkMode} = useContext(SettingsContext);
   const isCompleted = data.status === 'done';
 
   const swipeableRefHandler = (ref: SwipeableItemImperativeRef | null) => {
@@ -77,7 +79,7 @@ function TaskListItem({
           p="2"
           borderBottomWidth={PixelRatio.roundToNearestPixel(2)}
           borderBottomColor="primary"
-          backgroundColor={isCompleted ? 'disabled' : 'white'}
+          bg={isCompleted ? 'disabled' : 'taskBg'}
           flexDirection="row"
           {...containerProps}>
           <TouchableOpacity
@@ -105,7 +107,13 @@ function TaskListItem({
             </Text>
           </TouchableOpacity>
           <Pressable style={globalStyles.mlAuto} onPress={onEditPress}>
-            <Icon name="edit" size={24} />
+            <Icon
+              name="edit"
+              size={24}
+              color={
+                (isDarkMode ? darkTheme : theme).textVariants.defaults.color
+              }
+            />
           </Pressable>
         </Box>
       </SwipeableItem>

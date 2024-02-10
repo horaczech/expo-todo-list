@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   DefaultTheme,
   NavigationContainer,
@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/native';
 import Navigator from '@/navigation/Navigator';
 import LoadingScreen from '@/screens/LoadingScreen';
+import {SettingsContext} from '@/context/SettingsContext';
 
 interface Props {
   i18nInitialized: boolean;
@@ -21,6 +22,7 @@ const theme: Theme = {
 
 const Navigation = ({i18nInitialized}: Props) => {
   const [showContent, setShowContent] = useState(false);
+  const {isDarkMode} = useContext(SettingsContext);
 
   useEffect(() => {
     if (i18nInitialized) {
@@ -36,7 +38,14 @@ const Navigation = ({i18nInitialized}: Props) => {
   }
 
   return (
-    <NavigationContainer theme={theme}>
+    <NavigationContainer
+      theme={{
+        ...theme,
+        colors: {
+          ...theme.colors,
+          background: isDarkMode ? '#111d1e' : '#ecf6f9',
+        },
+      }}>
       <Navigator />
     </NavigationContainer>
   );
